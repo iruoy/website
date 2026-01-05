@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Relax. If you can…" />
+        <title>Ischgl</title>
+        <link rel="icon" href="/ischgl/favicon.svg">
+        <style>
+            :root {
+                color-scheme: light dark;
+            }
+
+            body {
+                font-family: sans-serif;
+                font-size: 1.25rem;
+                line-height: 1.5;
+            }
+
+            main {
+                max-width: min(80ch, 100% - 4rem);
+                margin-inline: auto;
+            }
+
+            video {
+                width: 100%;
+            }
+
+            @media (prefers-color-scheme: light) {
+              a {
+                color: black;
+              }
+            }
+
+            @media (prefers-color-scheme: dark) {
+                a {
+                    color: white;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Ischgl</h1>
+            <ul>
+                <li><a href="https://r2.iruoy.com/ischgl/pistenplan-ischgl-samnaun.pdf">Pistenplan</a></li>
+                <li><a href="https://winter.intermaps.com/silvretta_arena?zoomCalculationMode=fill&show=lifts,slopes,202">Skimap</a></li>
+            </ul>
+            <h2>Weer</h2>
+            <ul>
+                <li><a href="https://nl.bergfex.com/silvretta-arena-ischgl-samnaun/schneebericht/">Sneeuwbericht</a></li>
+                <li><a href="https://nl.bergfex.com/silvretta-arena-ischgl-samnaun/wetter/#prognose">Voorspelling</a></li>
+            </ul>
+            <h2>TV</h2>
+            <ul>
+                <li><a href="/ischgl/ischgl-tv/">Ischgl TV</a></li>
+                <li><a href="/ischgl/samnaun-tv/">Samnaun TV</a></li>
+            </ul>
+            <h2>Flyingcam</h2>
+            <ul>
+                <li><a href="https://webtv.feratel.com/webtv/?cam=75575&c2=0">Feratel</a></li>
+            </ul>
+            <details>
+                <summary>2026-01-03 15:10</summary>
+                <video controls preload="none" src="https://r2.iruoy.com/ischgl/flyingcam/VI-2026-01-03-15-10-01.mp4">
+                </video>
+            </details>
+            <details>
+                <summary>2025-11-28 12:00</summary>
+                <video controls preload="none" src="https://r2.iruoy.com/ischgl/flyingcam/VI-2025-11-28-12-00-01.mp4"></video>
+            </details>
+            <details>
+                <summary>2025-11-18 14:08</summary>
+                <video controls preload="none" src="https://r2.iruoy.com/ischgl/flyingcam/VI-2025-11-18-14-08-01.mp4"></video>
+            </details>
+            <details>
+                <summary>2025-11-12 14:20</summary>
+                <video controls preload="none" src="https://r2.iruoy.com/ischgl/flyingcam/VI-2025-11-12-14-20-01.mp4"></video>
+            </details>
+            <details>
+                <summary>2025-11-04 14:50</summary>
+                <video controls preload="none" src="https://r2.iruoy.com/ischgl/flyingcam/VI-2025-11-04-14-50-01.mp4"></video>
+            </details>
+        </main>
+        <script>
+        const formatter = new Intl.RelativeTimeFormat('nl', { numeric: 'auto' });
+        const items = document.getElementsByTagName('details');
+        for (const item of items) {
+          const date = new Date(item.children[0].textContent+'+01:00'); // only works for non dst dates
+          const diff = date - new Date(); // only works if browser is in UTC+1 timezone
+          const days = Math.round(diff / 86400000); // 1 day in ms (24 * 60 * 60 * 1000)
+
+          item.children[0].innerHTML += ' <small><em>(' + formatter.format(days, 'day') + ')</em></small>';
+
+          item.addEventListener('toggle', function(event) {
+            if (item.open) {
+              const video = item.querySelector('video');
+              video.setAttribute('preload','metadata');
+            }
+          });
+        }
+        </script>
+    </body>
+</html>
