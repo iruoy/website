@@ -3,7 +3,7 @@
 
 /ischgl/
   ! Content-Security-Policy
-  Content-Security-Policy: default-src 'self'; media-src 'self' r2.iruoy.com
+  Content-Security-Policy: default-src 'self'; media-src 'self' r2.iruoy.com; frame-src 'self' www.meteoblue.com
 
 /ischgl/tv/*
   ! Content-Security-Policy

@@ -3,6 +3,7 @@
 }
 
 body {
+    margin: 0;
     font-family: sans-serif;
     font-size: 1.25rem;
     line-height: 1.5;
@@ -35,4 +36,11 @@ video {
     a {
         color: white;
     }
+}
+
+.meteoblue {
+    color-scheme: light;
+    width: 378px;
+    height: 349px;
+    border: 0;
 }
